@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/card_radius">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/setup_obs"
+        android:textStyle="bold"
+        android:textColor="@color/gray"
+        android:textSize="22sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"/>
+
+    <ImageButton
+        android:id="@+id/btn_delete"
+        android:src="@drawable/ic_baseline_delete_forever_24"
+        android:layout_width="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_edit"
+        android:background="@drawable/btn_radius"
+        android:contentDescription="@string/button_delete"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_edit"
+        android:src="@drawable/ic_baseline_edit_24"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_delete"
+        android:background="@drawable/btn_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/button_edit" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
