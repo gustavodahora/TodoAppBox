@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">TodoAppBox</string>
+    <string name="edit_todo">Edit todo</string>
     <string name="floating_add">AddItemButton</string>
     <string name="setup_obs">Configurar OBS</string>
     <string name="button_delete">button delete</string>
     <string name="button_edit">button edit</string>
+    <string name="text">Text</string>
+    <string name="title">Title</string>
 </resources>

@@ -119,12 +119,17 @@ public class MainActivity extends AppCompatActivity {
 //                ImageView imgIcon = itemView.findViewById(R.id.item_img_icon);
 
                 ImageButton btnDelete = itemView.findViewById(R.id.btn_delete);
+                ImageButton btnEdit = itemView.findViewById(R.id.btn_edit);
 //
                 titleId.setText(item.getTitleId());
 
                 btnDelete.setOnClickListener(v -> {
                     mainItems.remove(position);
                     notifyDataSetChanged();
+                });
+
+                btnEdit.setOnClickListener(v -> {
+                    startActivity( new Intent(MainActivity.this, EditItem.class));
                 });
 
             }
