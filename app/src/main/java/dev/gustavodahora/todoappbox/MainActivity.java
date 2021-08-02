@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -29,41 +31,24 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvMain;
+    private boolean checkedTheme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // get and set theme on create
+        getPrefTheme();
+
         // Dark theme function
         SwitchCompat switchTheme = findViewById(R.id.switch_theme);
         switchTheme.setOnClickListener(v -> {
-            theme(switchTheme.isChecked());
+            setTheme(switchTheme.isChecked());
         });
 
         rvMain = findViewById(R.id.main_rv);
         List<MainItem> mainItems = new ArrayList<>();
-
-        mainItems.add(new MainItem(1, "Acordar mais cedo", "Lorem Ipsum is " +
-                "simply dummy text of the printing and typesetting industry. Lorem Ipsum has " +
-                "been the industry's standard dummy text ever since the 1500s, when an unknown " +
-                "printer took a galley of type and scrambled it to make a type specimen book." +
-                " It has survived not only five centuries, but also the leap into electronic" +
-                " typesetting, remaining essentially un"));
-
-        mainItems.add(new MainItem(2, "Contas a pagar", "Lorem Ipsum is " +
-                "simply dummy text of the printing and typesetting industry. Lorem Ipsum has " +
-                "been the industry's standard dummy text ever since the 1500s, when an unknown " +
-                "printer took a galley of type and scrambled it to make a type specimen book." +
-                " It has survived not only five centuries, but also the leap into electronic" +
-                " typesetting, remaining essentially un"));
-
-        mainItems.add(new MainItem(3, "Lista de compras", "Lorem Ipsum is " +
-                "simply dummy text of the printing and typesetting industry. Lorem Ipsum has " +
-                "been the industry's standard dummy text ever since the 1500s, when an unknown " +
-                "printer took a galley of type and scrambled it to make a type specimen book." +
-                " It has survived not only five centuries, but also the leap into electronic" +
-                " typesetting, remaining essentially un"));
 
         // Creation of recycle view manager.
         rvMain.setLayoutManager(new LinearLayoutManager(this));
@@ -80,12 +65,31 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public SharedPreferences sharedPref() {
+        return this.getSharedPreferences("dev.gustavodahora.todoappbox", Context.MODE_PRIVATE);
+    }
+
+    public void setTheme(boolean checked) {
+        SharedPreferences prefs = sharedPref();
+        prefs.edit().putBoolean("theme", checked).apply();
+        theme(checked);
+    }
+
+    // Get actual Theme
+    public void getPrefTheme() {
+        SharedPreferences prefs = sharedPref();
+        theme(prefs.getBoolean("theme", false));
+    }
+
     // Theme function
     public void theme(boolean checked) {
+        SwitchCompat switchTheme = findViewById(R.id.switch_theme);
         if (checked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            switchTheme.setChecked(true);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            switchTheme.setChecked(false);
         }
     }
 
@@ -142,3 +146,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+//mainItems.add(new MainItem(1, "Acordar mais cedo", "Lorem Ipsum is " +
+//        "simply dummy text of the printing and typesetting industry. Lorem Ipsum has " +
+//        "been the industry's standard dummy text ever since the 1500s, when an unknown " +
+//        "printer took a galley of type and scrambled it to make a type specimen book." +
+//        " It has survived not only five centuries, but also the leap into electronic" +
+//        " typesetting, remaining essentially un"));
+//
+//        mainItems.add(new MainItem(2, "Contas a pagar", "Lorem Ipsum is " +
+//        "simply dummy text of the printing and typesetting industry. Lorem Ipsum has " +
+//        "been the industry's standard dummy text ever since the 1500s, when an unknown " +
+//        "printer took a galley of type and scrambled it to make a type specimen book." +
+//        " It has survived not only five centuries, but also the leap into electronic" +
+//        " typesetting, remaining essentially un"));
+//
+//        mainItems.add(new MainItem(3, "Lista de compras", "Lorem Ipsum is " +
+//        "simply dummy text of the printing and typesetting industry. Lorem Ipsum has " +
+//        "been the industry's standard dummy text ever since the 1500s, when an unknown " +
+//        "printer took a galley of type and scrambled it to make a type specimen book." +
+//        " It has survived not only five centuries, but also the leap into electronic" +
+//        " typesetting, remaining essentially un"));
