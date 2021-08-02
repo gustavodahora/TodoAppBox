@@ -78,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
         View newItem = findViewById(R.id.action_new_item);
         newItem.setOnClickListener(v -> {
-
+            Intent intent = new Intent(MainActivity.this, NewItem.class);
+            startActivity(intent);
         });
 
     }
