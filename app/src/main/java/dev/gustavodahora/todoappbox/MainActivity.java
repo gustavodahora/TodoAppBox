@@ -2,6 +2,8 @@ package dev.gustavodahora.todoappbox;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         rvMain = findViewById(R.id.main_rv);
         List<MainItem> mainItems = new ArrayList<>();
-
-
 
         mainItems.add(new MainItem(1, "Acordar mais cedo", "Lorem Ipsum is " +
                 "simply dummy text of the printing and typesetting industry. Lorem Ipsum has " +
@@ -82,6 +84,23 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+
+        SwitchCompat switchTheme = findViewById(R.id.switch_theme);
+
+        switchTheme.setOnClickListener(v -> {
+            theme(switchTheme.isChecked());
+        });
+
+    }
+
+    public void theme(boolean checked) {
+        if (checked) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            Toast.makeText(this, "CHAMA 1", Toast.LENGTH_SHORT).show();
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            Toast.makeText(this, "CHAMA 2", Toast.LENGTH_SHORT).show();
+        }
     }
 
     // faz a conecção entre a recycle view e a view holder
