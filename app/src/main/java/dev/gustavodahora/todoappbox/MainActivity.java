@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Dark theme function
+        SwitchCompat switchTheme = findViewById(R.id.switch_theme);
+        switchTheme.setOnClickListener(v -> {
+            theme(switchTheme.isChecked());
+        });
+
         rvMain = findViewById(R.id.main_rv);
         List<MainItem> mainItems = new ArrayList<>();
 
@@ -59,40 +65,22 @@ public class MainActivity extends AppCompatActivity {
                 " It has survived not only five centuries, but also the leap into electronic" +
                 " typesetting, remaining essentially un"));
 
-
+        // Creation of recycle view manager.
         rvMain.setLayoutManager(new LinearLayoutManager(this));
-
+        // Setup the adapter.
         MainAdapter adapter = new MainAdapter(mainItems);
-
-//        adapter.setListener(id -> {
-//            switch(id) {
-//                case 1:
-//                    startActivity( new Intent(MainActivity.this, EditTodoItem.class));
-//                    break;
-//                case 2:
-//                    startActivity( new Intent(MainActivity.this, EditTodoItem.class));
-//                    break;
-//            }
-//
-//        });
-
         rvMain.setAdapter(adapter);
 
+        // New item
         View newItem = findViewById(R.id.action_new_item);
         newItem.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, NewItem.class);
             startActivity(intent);
         });
 
-
-        SwitchCompat switchTheme = findViewById(R.id.switch_theme);
-
-        switchTheme.setOnClickListener(v -> {
-            theme(switchTheme.isChecked());
-        });
-
     }
 
+    // Theme function
     public void theme(boolean checked) {
         if (checked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -103,18 +91,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // faz a conecção entre a recycle view e a view holder
+    // Main adapter
     private class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainViewHolder> {
         private List<MainItem> mainItems;
-//        private OnItemClickListener listener;
 
         public MainAdapter(List<MainItem> mainItems) {
             this.mainItems = mainItems;
         }
-
-//        public void setListener(OnItemClickListener listener) {
-//            this.listener = listener;
-//        }
 
         @NonNull
         @Override
@@ -123,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MainActivity.MainAdapter.MainViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull MainActivity.MainAdapter.MainViewHolder holder,
+                                     int position) {
             MainItem mainItemCurrent = mainItems.get(position);
             holder.bind(mainItemCurrent, position);
         }
@@ -142,18 +126,15 @@ public class MainActivity extends AppCompatActivity {
 
             public void bind(MainItem item, int position) {
                 TextView titleId = itemView.findViewById(R.id.title_item);
-//                ImageView imgIcon = itemView.findViewById(R.id.item_img_icon);
-
-                ImageButton btnDelete = itemView.findViewById(R.id.btn_delete);
-                ImageButton btnEdit = itemView.findViewById(R.id.btn_edit);
-//
                 titleId.setText(item.getTitleId());
 
+                ImageButton btnDelete = itemView.findViewById(R.id.btn_delete);
                 btnDelete.setOnClickListener(v -> {
                     mainItems.remove(position);
                     notifyDataSetChanged();
                 });
 
+                ImageButton btnEdit = itemView.findViewById(R.id.btn_edit);
                 btnEdit.setOnClickListener(v -> {
                     startActivity( new Intent(MainActivity.this, EditItem.class));
                 });
