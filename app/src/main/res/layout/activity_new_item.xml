@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/new_todo"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnSecondary"
         android:textSize="22sp"
         android:layout_marginTop="10dp"
         android:layout_marginStart="24dp"
@@ -21,7 +21,7 @@
         />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_title"
+        android:id="@+id/txt_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/title"
@@ -43,7 +43,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_text"
+        android:id="@+id/txt_text"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -54,7 +54,7 @@
         app:layout_constraintBottom_toTopOf="@id/btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_title"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -74,7 +74,7 @@
         android:drawableEnd="@drawable/ic_baseline_save_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/txt_text"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="10dp"/>
 
