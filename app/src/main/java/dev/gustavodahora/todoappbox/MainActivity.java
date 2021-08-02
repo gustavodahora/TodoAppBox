@@ -84,10 +84,8 @@ public class MainActivity extends AppCompatActivity {
     public void theme(boolean checked) {
         if (checked) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            Toast.makeText(this, "CHAMA 1", Toast.LENGTH_SHORT).show();
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            Toast.makeText(this, "CHAMA 2", Toast.LENGTH_SHORT).show();
         }
     }
 
