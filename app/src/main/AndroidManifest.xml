@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoAppBox">
-        <activity android:name=".EditItem"></activity>
+        <activity android:name=".NewItem"></activity>
+        <activity android:name=".EditItem" />
         <activity android:name=".ViewTodoItem" />
-        <activity android:name=".EditTodoItem" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

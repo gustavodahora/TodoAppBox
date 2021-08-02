@@ -7,4 +7,6 @@
     <string name="button_edit">button edit</string>
     <string name="text">Text</string>
     <string name="title">Title</string>
+    <string name="save">Save</string>
+    <string name="new_todo">New todo</string>
 </resources>

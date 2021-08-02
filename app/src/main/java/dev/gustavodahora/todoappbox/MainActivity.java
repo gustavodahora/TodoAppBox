@@ -75,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         rvMain.setAdapter(adapter);
+
+        View newItem = findViewById(R.id.action_new_item);
+        newItem.setOnClickListener(v -> {
+
+        });
+
     }
 
     // faz a conecção entre a recycle view e a view holder
